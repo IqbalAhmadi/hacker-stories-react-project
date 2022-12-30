@@ -22,17 +22,25 @@ const list = [
   },
 ];
 
+//! NOTE: We now have 3 components called App, List, and Search
+
+// App component 
 function App() {
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
+      {/* I moved these lines into its own function called Search  */} 
+      {/* <label htmlFor="search">Search: </label>
+      <input id="search" type="text" /> */}
+
+      <Search />
 
       <hr />
+      <List />  {/* This is the first react component created. I am using <List /> here as an extract of a large codes 👇 the we used to write. I wrote that code as separate function List that you can see below afterr commented codes }
 
-      <ul>
+
+      {/* <ul>
         {list.map(function (item) {
           return (
           <li key={item.objectID}>
@@ -45,10 +53,40 @@ function App() {
             </li>
           )
         })}
-      </ul>
+      </ul> */}
     </div>
   );
-} 
+}
+
+// Search component 
+function Search(){
+  return(
+    <div>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
+    </div>
+  )
+}
+
+// List component 
+function List(){
+  return(
+    <ul>
+      {list.map(function(item){
+        return(
+          <li key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
 
 export default App;
 
